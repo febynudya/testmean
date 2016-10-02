@@ -1,0 +1,127 @@
+<!-- index.html -->
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="hospitalManager">
+<head>
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+    <title>Hospital Management</title>
+
+    <!-- SCROLLS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+    <style>
+        html                    { overflow-y:scroll; }
+        #todo-list              { margin-bottom:30px; }
+    </style>
+
+    <!-- SPELLS -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
+    <script src="core.js"></script>
+
+</head>
+<!-- SET THE CONTROLLER AND GET ALL TODOS -->
+<body ng-controller="mainController">
+    <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#">Hospital</a>
+            </div>
+            <ul class="nav navbar-nav">
+               <li><a href="/doctorlist">List Doctor</a></li>
+              <li><a href="/medicalrecord">Medical Record</a></li>
+              <li><a href="/patientlist">Patient</a></li>
+              <li><a href="#">Log out</a></li>
+            </ul>
+          </div>
+        </nav>
+    <div class="container">
+
+        <!-- HEADER AND TODO COUNT -->
+
+        <!-- CAR LIST -->
+        <div id="hospital-list" class="row">             
+                
+
+
+                <div class="form-group">
+                
+                    <h2>Input Doctor</h2>
+                <!-- FORM TO CREATE CAR -->
+                    <form>
+                        <table class="table table-striped" width="90%">
+                            <colgroup>
+                                <col width="15%" />
+                                <col width="15%" />
+                                <col width="15%" />
+                                <col width="15%" />
+                                <col width="*" />
+                            </colgroup>
+                            <tr>
+                                <td>
+                                    <input type="hidden" ng-model="formData._id" />
+                                    <input type="text" placeHolder="Name" class="form-control text-center" width="100%" ng-model="formData.name"/>
+                                </td>
+                                <td>
+                                    <input type="text" placeHolder="Adress" class="form-control text-center" width="100%"ng-model="formData.adress"/>
+                                </td>
+                                <td>
+                                    <input type="text" placeHolder="Spesialist" class="form-control text-center" width="100%"ng-model="formData.spesialist"/>
+                                </td>
+                                <td>
+                                    <input type="submit" class="btn btn-primary" value="Add"  ng-click="createDoctor()" width="100%"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+                    <h2>List Doctor</h2>
+                <!-- LOOP OVER THE CAR IN $scope.cars -->
+                <table class="table table-striped" width="90%">
+                    <colgroup>
+                        <col width="15%" />
+                        <col width="15%" />
+                        <col width="15%" />
+                        <col width="15%" />
+                        <col width="15%" />
+                        <col width="*" />
+                    </colgroup>
+                    <tr>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Adress
+                        </th>
+                        <th>
+                            Specialist
+                        </th>
+                        <th>
+                            Action
+                        </th>
+                    </tr>
+                    <tr ng-repeat="doctor in doctors">
+                        <td>
+                            {{ doctor.name }}
+                        </td>
+                        <td>
+                            {{ doctor.adress }}
+                        </td>
+                        <td>
+                            {{ doctor.spesialist }}
+                        </td>
+                        <td>
+                            <input type="submit" class="btn btn-warning" value="Delete"  ng-click="deleteDoctor(doctor._id)"/>
+                            <input type="submit" class="btn btn-warning" value="Edit"  ng-click="editDoctor(doctor._id)"/>
+                        </td>
+                    </tr>
+                </table>
+        </div>
+
+    </div>
+
+</body>
+</html>
