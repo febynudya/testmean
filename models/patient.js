@@ -6,7 +6,7 @@
  * @author      :: Asep Maulana Ismail
  */
 var mongoose = require("mongoose");
-mongoose.connect('mongodb://localhost/hospital', function(err, res) 
+mongoose.connect('mongodb://localhost/patientdata', function(err, res) 
   {   if(err) 
     {     
     console.log('error connecting to MongoDB Database. ' + err);   } 
@@ -14,17 +14,17 @@ mongoose.connect('mongodb://localhost/hospital', function(err, res)
       console.log('Connected to Database');   } 
     });
 var Schema = mongoose.Schema;
-var DoctorSchema = new Schema({
+var PatientSchema = new Schema({
 
-  name_doctor:    {
+  name:    {
     type    : String,
     require : true
   },
-  adress:   {
+  age:   {
     type: String,
     require : true
   },
-  spesialist:   {
+  adress:   {
     type: String,
     require : true
   },
@@ -33,5 +33,5 @@ var DoctorSchema = new Schema({
     default : Date.now
   }
 });
-var Doctor = mongoose.model('Doctor', DoctorSchema);
-module.exports = Doctor;
+var Patient = mongoose.model('Patient', PatientSchema);;
+module.exports = Patient;

@@ -26,7 +26,6 @@ app.use('/users', users);
 var morgan = require('morgan'); 
 var bodyParser = require('body-parser'); 
 var methodOverride = require('method-override');
-var mongoose = require("mongoose");
 
 
 app.use(morgan('dev')); 
@@ -35,13 +34,7 @@ app.use(methodOverride());
 
 routes = require('./routes/hospital')(app);
 // MongoDB configuration 
-mongoose.connect('mongodb://localhost/hospital', function(err, res) 
-  {   if(err) 
-    {     
-    console.log('error connecting to MongoDB Database. ' + err);   } 
-    else {     
-      console.log('Connected to Database');   } 
-    });
+
 // catch 404 and forward to error handler
 app.listen(8080);
 console.log('Im listening on port 8080');
